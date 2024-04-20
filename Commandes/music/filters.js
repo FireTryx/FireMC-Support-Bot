@@ -31,9 +31,9 @@ module.exports = {
         await queue.filters.ffmpeg.toggle(filter)
 
         const FilterEmbed = new EmbedBuilder()
-        .setAuthor({name: `The filter ${filter} is now ${queue.filters.ffmpeg.isEnabled(filter) ? 'enabled' : 'disabled'} ✅\n*Reminder the longer the music is, the longer this will take.*`})
+        .setAuthor({name: `Le filtre ${filter} est maintenant ${queue.filters.ffmpeg.isEnabled(filter) ? 'activé' : 'désactivé'} ✅\n*Reminder the longer the music is, the longer this will take.*`})
         .setColor('#2f3136')
 
-       return await interaction.reply({ embeds: [FilterEmbed] });
+       await interaction.reply({ embeds: [FilterEmbed] });
     }
 }
