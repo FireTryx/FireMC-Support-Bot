@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 
 	data: new SlashCommandBuilder()
-		.setName("8d")
+		.setName("filtres")
 		.setDescription("Permet de jouer une musique")
         .setDMPermission(false)
         .setDefaultMemberPermissions(null)
@@ -12,7 +12,7 @@ module.exports = {
     async execute(client, interaction) {
         
         const queue = interaction.client.player.nodes.create(interaction.guild);
-        if (!queue || !queue.isPlaying()) return interaction.editReply({ content: `No music currently playing ${interaction.member}... try again ? ❌`, ephemeral: true });
+        if (!queue || !queue.isPlaying()) return await interaction.reply({ content: `Aucune musique est lancée ${interaction.member}... veuillez réessayez ? ❌`, ephemeral: true });
 
         const actualFilter = queue.filters.ffmpeg.getFiltersEnabled()[0];
 
@@ -26,7 +26,7 @@ module.exports = {
 
         const filter = filters.find((x) => x.toLowerCase() === infilter.toLowerCase().toString());
 
-        if (!filter) return await interaction.reply({ content: `This filter doesn't exist ${interaction.member}... try again ? ❌\n${actualFilter ? `Filter currently active ${actualFilter}.\n` : ''}List of available filters ${filters.map(x => `${x}`).join(', ')}.`, ephemeral: true });
+        if (!filter) return await interaction.reply({ content: `Ce filtre n'existe pas ${interaction.member}... try again ? ❌\n${actualFilter ? `Filter currently active ${actualFilter}.\n` : ''}List of available filters ${filters.map(x => `${x}`).join(', ')}.`, ephemeral: true });
 
         await queue.filters.ffmpeg.toggle(filter)
 
