@@ -25,7 +25,7 @@ module.exports = {
 
         await queue.connect(voiceChannelOfUser)
 
-        await queue.play(song, {
+        const { track} = await queue.play(song, {
             requestedBy: interaction,
             nodeOptions: {
                 volume: 70,
