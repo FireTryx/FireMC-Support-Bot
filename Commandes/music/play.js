@@ -23,11 +23,18 @@ module.exports = {
 
         const queue = interaction.client.player.nodes.create(interaction.guild)
 
-        await queue.addTrack(song)
-
         await queue.connect(voiceChannelOfUser)
 
-        await queue.play()
+        await queue.play(song, {
+            requestedBy: interaction,
+            nodeOptions: {
+                volume: 70,
+                metadata: interaction.user,
+                leaveOnEmpty: true,
+                leaveOnStop: true,
+                selfDeaf: true,
+            }
+        })
 
         await interaction.followUp(`La musique \`${track.title}\` de ${track.author} va être jouée dans ${voiceChannelOfUser}`)
     }
