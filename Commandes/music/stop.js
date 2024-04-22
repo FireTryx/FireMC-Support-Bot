@@ -14,7 +14,7 @@ module.exports = {
 
         const queue = interaction.client.player.nodes.get(interaction.guild)
 
-        await queue.destroy()
+        await queue.delete()
 
         await interaction.followUp(`La musique à été arrêté par ${interaction.user}`)
     }

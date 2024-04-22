@@ -20,12 +20,12 @@ module.exports = {
           const resultsSpotify = await client.player.search(interaction.options.getFocused(), { searchEngine: QueryType.SPOTIFY_SEARCH });
           const resultsYouTube = await client.player.search(interaction.options.getFocused(), { searchEngine: QueryType.YOUTUBE });
   
-          const tracksSpotify = resultsSpotify.tracks.slice(0, 5).map((track) => ({ name: `Spotify : ${`${track.title} - ${track.author}`.length > 75 ? `${`${track.title} - ${track.author}`.substring(0, 75)}...` : `${track.title} - ${track.author}`}`, value: track.url }));
+          // const tracksSpotify = resultsSpotify.tracks.slice(0, 5).map((track) => ({ name: `Spotify : ${`${track.title} - ${track.author}`.length > 75 ? `${`${track.title} - ${track.author}`.substring(0, 75)}...` : `${track.title} - ${track.author}`}`, value: track.url }));
           const tracksYouTube = resultsYouTube.tracks.slice(0, 5).map((track) => ({ name: `YouTube : ${`${track.title} - ${track.author}`.length > 75 ? `${`${track.title} - ${track.author}`.substring(0, 75)}...` : `${track.title} - ${track.author}`}`, value: track.url }));
           
           const tracks = [];
-          tracksSpotify.forEach((t) => tracks.push({ name: t.name, value: t.value }));
-          tracksYouTube.forEach((t) => tracks.push({ name: t.name, value: t.value }));
+          //tracksSpotify.forEach((t) => tracks.push({ name: t.name, value: t.value }));
+          await tracksYouTube.forEach((t) => tracks.push({ name: t.name, value: t.value }));
                       
           try {
               return await interaction.respond(tracks);   
